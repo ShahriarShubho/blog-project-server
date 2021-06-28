@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4444;
 
 //welcome the site
 app.get("/", (req, res) => {
@@ -61,4 +61,4 @@ client.connect((err) => {
 
 });
 
-app.listen(port)
+app.listen(process.env.PORT || 4444)
