@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require("mongodb").ObjectId;
 
 const app = express();
 app.use(express.json());
@@ -29,21 +30,35 @@ client.connect((err) => {
   //add blog in website
   app.post("/addBlog", (req, res) => {
     const blogs = req.body;
-    console.log(blogs)
     blogsCollection.insertOne(blogs).then((result) => {
       res.send(result.insertedCount > 0);
     });
   });
 
   //load all blogs
-  app.get("/allBlogs", (req, res) => {
+  app.get("/blogs", (req, res) => {
     blogsCollection.find({}).toArray((err, blogs) => {
       res.send(blogs);
     });
   });
 
+//blog by id load
+  app.get("/blogById/:id", (req, res) => {
+    blogsCollection.find({ _id: ObjectId(req.params.id) })
+      .toArray((err, book) => {
+        res.send(book[0]);
+      });
+  });
+
+    //delete blog
+    app.delete("/delete/:id", (req, res) => {
+      blogsCollection
+        .deleteOne({ _id: ObjectId(req.params.id) })
+        .then((result) => {
+          res.send(result.deletedCount > 0);
+        });
+    });
+
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+app.listen(port)
