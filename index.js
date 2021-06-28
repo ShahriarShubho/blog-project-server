@@ -11,7 +11,7 @@ app.use(cors());
 
 const port = process.env.PORT || 5000;
 
-//welcome site
+//welcome the site
 app.get("/", (req, res) => {
   res.send("WElcome to our website");
 });
