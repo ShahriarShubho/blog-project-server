@@ -20,5 +20,5 @@ It is a Blog site the more informantion given belowe.
 
 Here live site: [Rectro-Blog](https://rectro-blog.netlify.app/)
 
-You can visit the client code: [Rectro-Blog-client](https://github.com/ShahriarShubho/blog-project-server)
+You can visit the client code: [Rectro-Blog-client](https://github.com/ShahriarShubho/blog-projects)
 
